@@ -1,0 +1,99 @@
+/* Estilo geral para o perfil */
+.profile-container {
+  font-family: Arial, sans-serif;
+  background-color: #001449; /* Cor de fundo escura */
+  color: #ffffff;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título do perfil */
+h2 {
+  font-size: 28px;
+  color: #00b4fc; /* Azul claro */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+/* Estilos gerais para os inputs */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+/* Efeito de foco nos inputs */
+input:focus {
+  border-color: #00b4fc;
+  outline: none; /* Remove o outline padrão */
+}
+
+/* Botão de salvar alterações */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #005bc5; /* Azul forte */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Efeito de hover no botão */
+button:hover {
+  background-color: #00b4fc;
+  transform: scale(1.05); /* Leve aumento no tamanho para indicar interação */
+}
+
+/* Estilos para mensagens de erro e sucesso */
+.error-message {
+  color: #f44336; /* Vermelho para erros */
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.success-message {
+  color: #4caf50; /* Verde para sucesso */
+  font-size: 16px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Adiciona o efeito de suavidade e sombras */
+input, button {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+  transform: scale(1); /* Retorna ao tamanho normal ao clicar */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: 20px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  input, button {
+    font-size: 14px;
+    padding: 10px;
+  }
+}

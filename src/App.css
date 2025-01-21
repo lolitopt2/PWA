@@ -1,0 +1,187 @@
+/* Estilo Geral do Aplicativo */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #001449; /* Cor de fundo escura */
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+}
+
+/* Caixa principal do layout */
+.main-container {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #012677; /* Cor do fundo da caixa */
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Cabeçalho */
+h1, h2 {
+  color: #00b4fc; /* Azul claro para cabeçalhos */
+  text-align: center;
+}
+
+/* Botões principais */
+button {
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #005bc5; /* Azul mais forte ao passar o mouse */
+}
+
+button.logout-button {
+  background-color: #17f9ff; /* Botão de logout em um tom de azul claro */
+  color: #001449;
+}
+
+button.logout-button:hover {
+  background-color: #00b4fc; /* Alterar o tom quando o mouse passar */
+}
+
+/* Inputs e select (campos de formulário) */
+input, select {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  font-size: 16px;
+  width: 100%;
+}
+
+input:focus, select:focus {
+  border-color: #00b4fc;
+}
+
+/* Tabela de reservas */
+.reservas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservas-table th, .reservas-table td {
+  padding: 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.reservas-table th {
+  background-color: #005bc5;
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.reservas-table tr:hover {
+  background-color: #17f9ff;
+}
+
+.table-container {
+  background-color: #012677; /* Caixa de tabela */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Botões de ação da tabela */
+.btn-delete {
+  background-color: #f44336;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #e53935;
+}
+
+/* Popup de boas-vindas */
+.welcome-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.popup-content h2 {
+  color: #001449;
+}
+
+.popup-content button {
+  background-color: #005bc5;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-content button:hover {
+  background-color: #00b4fc;
+}
+
+/* Estilos para a navegação (nav bar) */
+.navbar {
+  display: flex;
+  justify-content: center;
+  background-color: #001449;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.navbar button {
+  background-color: #005bc5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin: 0 10px;
+}
+
+.navbar button:hover {
+  background-color: #00b4fc;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 20px;
+  }
+
+  .reservas-table th, .reservas-table td {
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .btn-delete {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}

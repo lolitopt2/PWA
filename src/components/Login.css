@@ -1,0 +1,80 @@
+/* Estilo geral para o body */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #001449; /* Cor de fundo escura */
+  color: #ffffff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Faz a página ocupar toda a altura da tela */
+}
+
+/* Caixa do formulário de login */
+.login-container {
+  background-color: #012677; /* Cor de fundo da caixa de login */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Limita a largura */
+  text-align: center;
+}
+
+/* Títulos */
+h2 {
+  font-size: 24px;
+  color: #00b4fc; /* Azul claro */
+  margin-bottom: 20px;
+}
+
+/* Formulário de login */
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  font-size: 16px;
+}
+
+/* Efeito ao focar no input */
+input:focus {
+  border-color: #00b4fc;
+}
+
+/* Botão de login */
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #005bc5; /* Cor do botão de login */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00b4fc; /* Cor do botão quando o mouse passa por cima */
+}
+
+/* Link para registrar */
+p {
+  font-size: 14px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.toggle-link {
+  color: #17f9ff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.toggle-link:hover {
+  color: #00b4fc;
+}

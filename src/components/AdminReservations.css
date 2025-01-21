@@ -1,0 +1,78 @@
+/* Contêiner principal */
+.admin-reservations-container {
+    font-family: 'Arial', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Título */
+  h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* Tabela */
+  .table-rounded {
+    width: 100%;
+    border-collapse: separate;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .table-rounded th, .table-rounded td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .table-rounded th {
+    background-color: #3F51B5;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  .table-rounded tr:hover {
+    background-color: #e3f2fd;
+  }
+  
+  .table-rounded td {
+    font-size: 16px;
+    background-color: #ffffff;
+  }
+  
+  /* Botão de apagar */
+  .btn-delete {
+    padding: 8px 12px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-delete:hover {
+    background-color: #e53935;
+  }
+  
+  @media (max-width: 768px) {
+    .table-rounded th, .table-rounded td {
+      font-size: 14px;
+      padding: 10px;
+    }
+  
+    .btn-delete {
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+  }
+  

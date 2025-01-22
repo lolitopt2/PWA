@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db, auth } from '../firebase';
 import { collection, getDocs, query, where, deleteDoc, doc, updateDoc, addDoc } from 'firebase/firestore';
-import './Reservas.css'; // Importando o CSS atualizado
+import './Reservas.css';
 
 const Reservas = () => {
   const [nome, setNome] = useState('');
@@ -28,9 +28,30 @@ const Reservas = () => {
         id: doc.id,
         ...doc.data(),
       }));
+
       setReservas(reservasArray);
     } catch (error) {
       console.error('Erro ao carregar reservas:', error);
+    }
+  };
+
+  // Função para verificar se já existem 2 reservas para a mesma hora e data
+  const verificarReservas = async (data, hora) => {
+    try {
+      const reservasQuery = query(
+        collection(db, 'reservas'),
+        where('data', '==', data),
+        where('hora', '==', hora)
+      );
+      const querySnapshot = await getDocs(reservasQuery);
+
+      if (querySnapshot.size >= 2) {
+        return true; // Retorna true se já houver 2 ou mais reservas
+      }
+      return false; // Se houver menos de 2, retorna false
+    } catch (error) {
+      console.error('Erro ao verificar reservas:', error);
+      return false;
     }
   };
 
@@ -42,6 +63,14 @@ const Reservas = () => {
     try {
       if (!nome || !pessoas || !hora || !data) {
         alert('Por favor, preencha todos os campos.');
+        setLoading(false);
+        return;
+      }
+
+      // Verificar se já existem 2 reservas para a mesma hora
+      const jaExistemReservas = await verificarReservas(data, hora);
+      if (jaExistemReservas) {
+        alert('Já existem 2 reservas para este horário. Por favor, escolha outro horário.');
         setLoading(false);
         return;
       }

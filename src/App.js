@@ -7,7 +7,7 @@ import Profile from './components/Profile';
 import AdminReservations from './components/AdminReservations';
 import CreateReservation from './components/CreateReservation';
 import { db, auth } from './firebase';
-import { doc, getDoc } from 'firebase/firestore';  // Funções para buscar dados do Firestore
+import { doc, getDoc } from 'firebase/firestore';
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,6 +15,7 @@ function App() {
   const [currentTab, setCurrentTab] = useState('reservas');
   const [role, setRole] = useState('');  // Armazena o papel do usuário (user ou admin)
   const [showWelcomePopup, setShowWelcomePopup] = useState(false);  // Estado para controlar o popup de boas-vindas
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);  // Estado para controlar a exibição do dropdown
 
   // Função chamada após login bem-sucedido
   const handleLoginSuccess = async () => {
@@ -61,34 +62,49 @@ function App() {
     setShowWelcomePopup(false);  // Fecha o popup de boas-vindas
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);  // Alterna o estado do dropdown
+  };
+
   return (
     <div className="App">
       {isLoggedIn ? (
         <div>
           <nav className="navbar">
-            <button onClick={() => switchTab('reservas')}>Reservas</button>
-            <button onClick={() => switchTab('perfil')}>Perfil</button>
+            <div className="nav-links">
+              <a onClick={() => switchTab('reservas')}>Reservas</a>
+              <a onClick={() => switchTab('perfil')}>Perfil</a>
+            </div>
 
-            {/* Exibe a opção de Admin se o papel for admin */}
+            {/* Menu suspenso de Admin */}
             {role === 'admin' && (
-              <>
-                <button onClick={() => switchTab('admin-reservations')}>Todas as Reservas</button>
-                <button onClick={() => switchTab('create-reservation')}>Criar Reserva</button>
-              </>
+              <div className={`dropdown ${isDropdownOpen ? 'open' : ''}`}>
+                <button onClick={toggleDropdown}>Admin</button>
+                <div className="dropdown-content">
+                  <a onClick={() => switchTab('admin-reservations')}>Todas as Reservas</a>
+                  <a onClick={() => switchTab('create-reservation')}>Criar Reserva</a>
+                </div>
+              </div>
             )}
 
-            <button onClick={handleLogout} className="logout-button">Logout</button>
+            <div className="user-options">
+              <button onClick={handleLogout} className="logout-button">Logout</button>
+            </div>
           </nav>
 
-          {currentTab === 'reservas' ? (
-            <Reservas />
-          ) : currentTab === 'perfil' ? (
-            <Profile />
-          ) : currentTab === 'admin-reservations' ? (
-            <AdminReservations />
-          ) : currentTab === 'create-reservation' ? (
-            <CreateReservation />
-          ) : null}
+          <div className="title">Reservas da Pizzaria</div>
+
+          <div className="main-container">
+            {currentTab === 'reservas' ? (
+              <Reservas />
+            ) : currentTab === 'perfil' ? (
+              <Profile />
+            ) : currentTab === 'admin-reservations' ? (
+              <AdminReservations />
+            ) : currentTab === 'create-reservation' ? (
+              <CreateReservation />
+            ) : null}
+          </div>
         </div>
       ) : isRegistering ? (
         <Register onRegisterSuccess={handleRegisterSuccess} toggleLogin={toggleRegister} />

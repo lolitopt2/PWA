@@ -1,67 +1,184 @@
-/* Estilo Geral do Aplicativo */
+/* Estilo geral do aplicativo */
 body {
   font-family: Arial, sans-serif;
-  background-color: #001449; /* Cor de fundo escura */
+  background-color: #001449;
   color: #ffffff;
   margin: 0;
   padding: 0;
 }
 
-/* Caixa principal do layout */
-.main-container {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 30px;
-  background-color: #012677; /* Cor do fundo da caixa */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+/* Navbar Estilizada */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #012677;
+  padding: 15px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  flex-wrap: wrap; /* Permite que os itens se ajustem em telas pequenas */
 }
 
-/* Cabeçalho */
-h1, h2 {
-  color: #00b4fc; /* Azul claro para cabeçalhos */
-  text-align: center;
+.navbar .nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex: 1;
 }
 
-/* Botões principais */
-button {
-  padding: 12px 20px;
-  border-radius: 5px;
+.navbar .nav-links a {
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar .nav-links a:hover {
+  color: #00b4fc;
+}
+
+/* Barra lateral com botões estilizados */
+.navbar .user-options {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar .user-options button {
+  padding: 10px 20px;
+  background-color: #005bc5;
+  color: white;
   border: none;
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #005bc5; /* Azul mais forte ao passar o mouse */
+.navbar .user-options button:hover {
+  background-color: #00b4fc;
 }
 
-button.logout-button {
-  background-color: #17f9ff; /* Botão de logout em um tom de azul claro */
-  color: #001449;
+.navbar .logout-button {
+  background-color: #f44336;
 }
 
-button.logout-button:hover {
-  background-color: #00b4fc; /* Alterar o tom quando o mouse passar */
+.navbar .logout-button:hover {
+  background-color: #e53935;
 }
 
-/* Inputs e select (campos de formulário) */
-input, select {
-  padding: 12px;
-  margin: 10px 0;
+/* Menu suspenso para o Admin */
+.navbar .dropdown {
+  position: relative;
+}
+
+.navbar .dropdown button {
+  padding: 10px 20px;
+  background-color: #005bc5;
+  color: white;
+  border: none;
   border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #ffffff;
   font-size: 16px;
-  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-input:focus, select:focus {
-  border-color: #00b4fc;
+.navbar .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #012677;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  min-width: 160px;
+  z-index: 1;
+  margin-top: 10px;
+  border-radius: 5px;
 }
 
-/* Tabela de reservas */
+.navbar .dropdown.open .dropdown-content {
+  display: block;
+}
+
+.navbar .dropdown-content a {
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.navbar .dropdown-content a:hover {
+  background-color: #00b4fc;
+}
+
+/* Estilo do menu de navegação para desktop e mobile */
+.main-container {
+  padding: 70px 30px 30px; /* Espaço para a navbar fixa */
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #012677;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo do título centralizado */
+.title {
+  text-align: center;
+  font-size: 36px;
+  color: #00b4fc;
+  margin-top: 80px; /* Espaço para a navbar */
+  font-weight: bold;
+}
+
+/* Responsividade para telas pequenas */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px; /* Reduz o padding */
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%; /* Aumenta a largura dos links */
+    text-align: left;
+  }
+
+  .navbar .user-options {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar .nav-links a {
+    font-size: 16px;
+  }
+
+  .navbar .user-options button {
+    width: 100%;
+    font-size: 14px;
+  }
+
+  /* Logo */
+  .navbar .logo img {
+    width: 120px; /* Reduz o tamanho da imagem do logo em telas pequenas */
+  }
+
+  .main-container {
+    margin-left: 0; /* Remover o espaço da navbar fixa para telas pequenas */
+  }
+
+  .title {
+    font-size: 28px; /* Reduz o tamanho da fonte do título em telas menores */
+    margin-top: 100px; /* Ajuste para o título ficar abaixo da navbar */
+  }
+}
+
+/* Estilo da tabela de reservas */
 .reservas-table {
   width: 100%;
   border-collapse: collapse;
@@ -89,7 +206,7 @@ input:focus, select:focus {
 }
 
 .table-container {
-  background-color: #012677; /* Caixa de tabela */
+  background-color: #012677;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
@@ -110,7 +227,6 @@ input:focus, select:focus {
   background-color: #e53935;
 }
 
-/* Popup de boas-vindas */
 .welcome-popup {
   position: fixed;
   top: 0;
@@ -148,40 +264,116 @@ input:focus, select:focus {
 .popup-content button:hover {
   background-color: #00b4fc;
 }
-
-/* Estilos para a navegação (nav bar) */
-.navbar {
+/* Novo estilo responsivo para o formulário e títulos */
+form {
   display: flex;
-  justify-content: center;
-  background-color: #001449;
-  padding: 10px;
-  margin-bottom: 20px;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #012677;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.navbar button {
+form input, form select {
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
+}
+
+form input:focus, form select:focus {
+  border-color: #00b4fc;
+}
+
+form button {
+  padding: 12px 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
   background-color: #005bc5;
   color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin: 0 10px;
 }
 
-.navbar button:hover {
+form button:hover {
   background-color: #00b4fc;
 }
 
+form button:disabled {
+  background-color: #aaa;
+  cursor: not-allowed;
+}
+
+/* Título do Formulário */
+.title {
+  text-align: center;
+  font-size: 36px;
+  color: #00b4fc;
+  margin-top: 80px;
+  font-weight: bold;
+}
+
+/* Responsividade */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .navbar .nav-links {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar .user-options {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+  }
+
+  .navbar .nav-links a {
+    font-size: 16px;
+  }
+
+  .navbar .user-options button {
+    width: 100%;
+    font-size: 14px;
+  }
+
   .main-container {
+    margin-left: 0;
     padding: 20px;
   }
 
-  .reservas-table th, .reservas-table td {
-    padding: 10px;
-    font-size: 14px;
+  .title {
+    font-size: 28px;
+    margin-top: 100px;
   }
 
-  .btn-delete {
-    padding: 6px 10px;
+  form {
+    width: 100%;
+    padding: 15px;
+  }
+
+  form input, form select, form button {
+    font-size: 14px;
+    width: 100%;
+    max-width: none;
+  }
+
+  form button {
     font-size: 14px;
   }
 }
+

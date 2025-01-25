@@ -28,7 +28,7 @@ function Profile() {
           setEmail(data.email || '');
           setPhone(data.phone || '');
           setNif(data.nif || '');
-          setImageUrl(data.profilePicture || ''); // Carrega a imagem de perfil
+          setImageUrl(data.profilePicture || '/PWA/public/default-profile.jpg'); // Carrega a imagem de perfil
         }
       } catch (error) {
         console.error('Erro ao carregar os dados do perfil:', error);

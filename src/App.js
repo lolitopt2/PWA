@@ -13,9 +13,10 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isRegistering, setIsRegistering] = useState(false);
   const [currentTab, setCurrentTab] = useState('reservas');
-  const [role, setRole] = useState('');  // Armazena o papel do usuário (user ou admin)
-  const [showWelcomePopup, setShowWelcomePopup] = useState(false);  // Estado para controlar o popup de boas-vindas
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);  // Estado para controlar a exibição do dropdown
+  const [role, setRole] = useState(''); // Armazena o papel do usuário (user ou admin)
+  const [showWelcomePopup, setShowWelcomePopup] = useState(false); // Estado para controlar o popup de boas-vindas
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false); // Estado para controlar a exibição do dropdown
+  const [profilePic, setProfilePic] = useState('/PWA/public/default-profile.jpg'); // Default profile picture
 
   // Função chamada após login bem-sucedido
   const handleLoginSuccess = async () => {
@@ -27,11 +28,16 @@ function App() {
     const docSnap = await getDoc(userRef);
 
     if (docSnap.exists()) {
-      const userRole = docSnap.data().role;  // Obtém o papel do usuário
-      setRole(userRole);  // Define o papel do usuário (admin ou user)
+      const userData = docSnap.data();
+      setRole(userData.role); // Define o papel do usuário (admin ou user)
+
+      // Define a foto de perfil do utilizador
+      if (userData.profilePicture) {
+        setProfilePic(userData.profilePicture);
+      }
 
       // Se for admin, exibe o popup de boas-vindas
-      if (userRole === 'admin') {
+      if (userData.role === 'admin') {
         setShowWelcomePopup(true);
       }
     } else {
@@ -47,7 +53,8 @@ function App() {
   const handleLogout = () => {
     setIsLoggedIn(false);
     setRole('');
-    setShowWelcomePopup(false);  // Fecha o popup ao fazer logout
+    setShowWelcomePopup(false); // Fecha o popup ao fazer logout
+    setProfilePic('/default-profile.jpg'); // Reset profile picture
   };
 
   const toggleRegister = () => {
@@ -59,11 +66,16 @@ function App() {
   };
 
   const closeWelcomePopup = () => {
-    setShowWelcomePopup(false);  // Fecha o popup de boas-vindas
+    setShowWelcomePopup(false); // Fecha o popup de boas-vindas
   };
 
   const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);  // Alterna o estado do dropdown
+    setIsDropdownOpen(!isDropdownOpen); // Alterna o estado do dropdown
+  };
+
+  // Callback to update profile picture
+  const handleProfilePictureChange = (newProfilePic) => {
+    setProfilePic(newProfilePic);
   };
 
   return (
@@ -73,7 +85,14 @@ function App() {
           <nav className="navbar">
             <div className="nav-links">
               <a onClick={() => switchTab('reservas')}>Reservas</a>
-              <a onClick={() => switchTab('perfil')}>Perfil</a>
+
+              {/* Substituir o texto "Perfil" pela imagem do perfil */}
+              <img
+                src={profilePic}
+                alt="Perfil"
+                className="profile-icon"
+                onClick={() => switchTab('perfil')}
+              />
             </div>
 
             {/* Menu suspenso de Admin */}
@@ -98,7 +117,7 @@ function App() {
             {currentTab === 'reservas' ? (
               <Reservas />
             ) : currentTab === 'perfil' ? (
-              <Profile />
+              <Profile onProfilePictureChange={handleProfilePictureChange} />
             ) : currentTab === 'admin-reservations' ? (
               <AdminReservations />
             ) : currentTab === 'create-reservation' ? (
@@ -127,3 +146,4 @@ function App() {
 }
 
 export default App;
+

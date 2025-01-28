@@ -73,6 +73,9 @@ function Profile() {
 
       setSuccessMessage('Perfil atualizado com sucesso!');
       setErrorMessage('');
+      
+      window.location.reload();
+      
     } catch (error) {
       console.error('Erro ao atualizar perfil:', error);
       setErrorMessage('Erro ao atualizar perfil. Tente novamente.');

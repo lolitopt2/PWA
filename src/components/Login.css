@@ -1,103 +1,119 @@
 /* Estilo geral para o body */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #001449;
-  color: #ffffff;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh; /* Faz a página ocupar toda a altura da tela */
-  overflow-x: hidden; /* Impede que o conteúdo ultrapasse a tela */
-  box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #001449;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Faz a página ocupar toda a altura da tela */
+    overflow-x: hidden; /* Impede que o conteúdo ultrapasse a tela */
+    box-sizing: border-box;
 }
+/* Botão do Google */
+.google-login {
+    background-color: #db4437;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
+    border: none;
+}
+
+    .google-login:hover {
+        background-color: #c1351d;
+    }
 
 /* Caixa do formulário de login */
 .login-container {
-  background-color: #012677;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-  width: 90%; /* O formulário ocupa 90% da tela */
-  max-width: 400px;
-  text-align: center;
-  box-sizing: border-box;
-  margin: 0 auto; /* Garante que o formulário fica centralizado */
+    background-color: #012677;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    width: 90%; /* O formulário ocupa 90% da tela */
+    max-width: 400px;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0 auto; /* Garante que o formulário fica centralizado */
 }
 
 /* Títulos */
 h2 {
-  font-size: 24px;
-  color: #00b4fc;
-  margin-bottom: 20px;
-  font-weight: bold;
+    font-size: 24px;
+    color: #00b4fc;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
 /* Formulário de login */
 input, button {
-  width: 100%; /* O campo de input ocupa toda a largura disponível */
-  padding: 12px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  background-color: #ffffff;
-  font-size: 16px;
-  box-sizing: border-box;
+    width: 100%; /* O campo de input ocupa toda a largura disponível */
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    font-size: 16px;
+    box-sizing: border-box;
 }
 
-input:focus {
-  border-color: #00b4fc;
-}
+    input:focus {
+        border-color: #00b4fc;
+    }
 
 button {
-  background-color: #005bc5;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+    background-color: #005bc5;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #00b4fc;
-}
+    button:hover {
+        background-color: #00b4fc;
+    }
 
-button:disabled {
-  background-color: #aaa;
-  cursor: not-allowed;
-}
+    button:disabled {
+        background-color: #aaa;
+        cursor: not-allowed;
+    }
 
 /* Link para registrar */
 p {
-  font-size: 14px;
-  margin-top: 10px;
-  color: #ffffff;
+    font-size: 14px;
+    margin-top: 10px;
+    color: #ffffff;
 }
 
 .toggle-link {
-  color: #17f9ff;
-  cursor: pointer;
-  text-decoration: underline;
+    color: #17f9ff;
+    cursor: pointer;
+    text-decoration: underline;
 }
 
-.toggle-link:hover {
-  color: #00b4fc;
-}
+    .toggle-link:hover {
+        color: #00b4fc;
+    }
 
 /* Responsividade para dispositivos móveis */
 @media (max-width: 768px) {
-  .login-container {
-    width: 90%; /* Formulário ocupa 90% da largura da tela */
-    max-width: 350px; /* Limita o máximo a 350px */
-    padding: 15px;
-  }
+    .login-container {
+        width: 90%; /* Formulário ocupa 90% da largura da tela */
+        max-width: 350px; /* Limita o máximo a 350px */
+        padding: 15px;
+    }
 
-  h2 {
-    font-size: 20px; /* Ajusta o tamanho do título para telas menores */
-  }
+    h2 {
+        font-size: 20px; /* Ajusta o tamanho do título para telas menores */
+    }
 
-  input, button {
-    font-size: 14px; /* Ajuste na fonte */
-  }
+    input, button {
+        font-size: 14px; /* Ajuste na fonte */
+    }
 }

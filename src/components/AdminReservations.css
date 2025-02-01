@@ -12,13 +12,13 @@
 /* Título */
 h2 {
   font-size: 28px;
-  color: #333;
+  color: #ffffff;
   margin-bottom: 20px;
   text-align: center;
 }
 
 /* Tabela */
-.table-rounded {
+.table-rounded {  
   width: 100%;
   border-collapse: separate;
   border-radius: 10px;

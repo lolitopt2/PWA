@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth, db } from '../firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import './Login.css';
 
 const Login = ({ onLoginSuccess, toggleRegister }) => {
@@ -9,7 +9,39 @@ const Login = ({ onLoginSuccess, toggleRegister }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
-  const handleLogin = async (e) => {
+  // Função de login com Google
+  const handleGoogleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      // Realiza o login com o Google
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      // Verifica se o usuário já existe no Firestore
+      const userRef = doc(db, 'users', user.uid);
+      const userSnap = await getDoc(userRef);
+
+      // Se o usuário não existir, cria um novo usuário no Firestore
+      if (!userSnap.exists()) {
+        // Cria um novo usuário no Firestore com as informações do Google
+        await setDoc(userRef, {
+          name: user.displayName,
+          email: user.email,
+          profilePicture: user.photoURL,
+          role: 'user', // Definindo o role como 'user', você pode mudar isso para 'admin' se necessário
+        });
+      }
+
+      // Redireciona para o painel após a autenticação bem-sucedida
+      onLoginSuccess(user);
+    } catch (err) {
+      setError('Erro ao fazer login com Google.');
+      console.error('Login with Google failed:', err);
+    }
+  };
+
+  // Função de login com email e senha
+  const handleEmailLogin = async (e) => {
     e.preventDefault();
     setError('');
 
@@ -25,11 +57,9 @@ const Login = ({ onLoginSuccess, toggleRegister }) => {
       if (userSnap.exists()) {
         const userData = userSnap.data();
         if (userData.role === 'admin') {
-          // Se for admin, redireciona para a página de admin
           alert('Bem-vindo, admin!');
           onLoginSuccess('admin');
         } else {
-          // Se for user normal, vai para o painel de usuário
           alert('Bem-vindo, usuário!');
           onLoginSuccess('user');
         }
@@ -46,7 +76,9 @@ const Login = ({ onLoginSuccess, toggleRegister }) => {
     <div className="login-container">
       <h2>Login</h2>
       {error && <p className="error-message">{error}</p>}
-      <form onSubmit={handleLogin}>
+
+      {/* Formulário de login por email e senha */}
+      <form onSubmit={handleEmailLogin}>
         <input
           type="email"
           placeholder="Email"
@@ -63,6 +95,12 @@ const Login = ({ onLoginSuccess, toggleRegister }) => {
         />
         <button type="submit">Entrar</button>
       </form>
+
+      {/* Botão de login com Google */}
+      <button onClick={handleGoogleLogin} className="google-login">
+        Entrar com Google
+      </button>
+
       <p>
         Não tem conta?{' '}
         <span className="toggle-link" onClick={toggleRegister}>
@@ -73,4 +111,4 @@ const Login = ({ onLoginSuccess, toggleRegister }) => {
   );
 };
 
-export default Login;
+export default Login;
